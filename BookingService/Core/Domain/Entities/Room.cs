@@ -23,7 +23,7 @@ namespace Domain.Entities
                 }
 
                 return true;
-            };
+            }
         }
 
         public bool HasGuest
