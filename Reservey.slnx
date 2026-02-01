@@ -23,5 +23,8 @@
   <Folder Name="/BookingService/Tests/Domain/">
     <Project Path="BookingService/Tests/Domain/DomainTests/DomainTests.csproj" />
   </Folder>
+  <Folder Name="/Itens de Solução/">
+    <File Path="docker-compose.yml" />
+  </Folder>
   <Folder Name="/PaymentService/" />
 </Solution>
