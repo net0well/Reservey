@@ -21,14 +21,15 @@ namespace Domain.Entities
         private void ValidateState() 
         {
             if(DocumentId == null ||
+               string.IsNullOrEmpty(DocumentId.IdNumber) ||
                DocumentId.IdNumber.Length <= 3)
             {
                 throw new InvalidPersonDocumentIdException();
             }
 
-            if(Name == null ||
-               Email == null ||
-               Surname == null)
+            if(string.IsNullOrEmpty(Name) ||
+               string.IsNullOrEmpty(Email) ||
+               string.IsNullOrEmpty(Surname))
             {
                 throw new MissingRequiredInformation();
             }
