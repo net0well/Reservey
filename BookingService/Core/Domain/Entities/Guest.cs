@@ -1,4 +1,7 @@
-﻿using Domain.ValueObjects;
+﻿using Domain.Exceptions;
+using Domain.Ports;
+using Domain.ValueObjects;
+using Shared;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,5 +17,39 @@ namespace Domain.Entities
         public string Surname { get; set; }
         public string Email { get; set; }
         public PersonId DocumentId { get; set; }
+
+        private void ValidateState() 
+        {
+            if(DocumentId == null ||
+               DocumentId.IdNumber.Length <= 3)
+            {
+                throw new InvalidPersonDocumentIdException();
+            }
+
+            if(Name == null ||
+               Email == null ||
+               Surname == null)
+            {
+                throw new MissingRequiredInformation();
+            }
+
+            if (!Utils.IsValidEmail(Email))
+            {
+                throw new InvalidEmailException();
+            }
+        }
+
+        public async Task Save(IGuestRepository repository)
+        {
+            this.ValidateState();
+
+            if(this.Id == 0)
+            {
+                this.Id = await repository.Create(this);
+            }else
+            {
+                //TODO ATUALIZAR
+            }
+        }
     }
 }
