@@ -33,11 +33,14 @@ namespace API.Controllers
 
             if (res.IsSuccess) return Created("", res.Data);
 
-            if (res.ErrorCode == ErrorCodes.NOT_FOUND) return BadRequest(res);
-
-            _logger.LogError("Response with unknown ErrorCode Returned");
-            return BadRequest(500);
-
+            return res.ErrorCode switch
+            {
+                ErrorCodes.INVALID_EMAIL_ADDRESS => BadRequest(res),
+                ErrorCodes.INVALID_PERSON_ID => BadRequest(res),
+                ErrorCodes.MISSING_REQUIRED_INFORMATION => UnprocessableEntity(res),
+                ErrorCodes.COULD_NOT_STORE_DATA => StatusCode(500, res),
+                _ => BadRequest(res)
+            };
         }
     }
 }

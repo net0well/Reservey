@@ -13,6 +13,9 @@
   <Folder Name="/BookingService/Core/Domain/">
     <Project Path="BookingService/Core/Domain/Domain.csproj" />
   </Folder>
+  <Folder Name="/BookingService/Core/Shared/">
+    <Project Path="Shared/Shared.csproj" Id="1aa0d3bc-0818-4669-a6f0-98e684371a77" />
+  </Folder>
   <Folder Name="/BookingService/Tests/" />
   <Folder Name="/BookingService/Tests/Adapters/">
     <Project Path="BookingService/Tests/Adapters/AdaptersTests/AdaptersTests.csproj" />

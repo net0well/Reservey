@@ -2,6 +2,7 @@
 using Application.Guest.Ports;
 using Application.Guest.Requests;
 using Application.Guest.Responses;
+using Domain.Exceptions;
 using Domain.Ports;
 namespace Application
 {
@@ -18,7 +19,9 @@ namespace Application
             {
                 var guest = GuestDTO.MapToEntity(request.Data);
 
-                request.Data.Id = await _guestRepository.Create(guest);
+                await guest.Save(_guestRepository);
+
+                request.Data.Id = guest.Id;
 
                 return new GuestResponse
                 {
@@ -28,14 +31,21 @@ namespace Application
             }
             catch (Exception ex)
             {
+                var errorCode = ex switch
+                {
+                    InvalidEmailException => ErrorCodes.INVALID_EMAIL_ADDRESS,
+                    InvalidPersonDocumentIdException => ErrorCodes.INVALID_PERSON_ID,
+                    MissingRequiredInformation => ErrorCodes.MISSING_REQUIRED_INFORMATION,
+                    _ => ErrorCodes.COULD_NOT_STORE_DATA
+                };
+
                 return new GuestResponse
                 {
                     IsSuccess = false,
-                    ErrorCode = ErrorCodes.COULD_NOT_STORE_DATA,
+                    ErrorCode = errorCode,
                     Message = ex.Message
                 };
             }
-            
         }
     }
 }
