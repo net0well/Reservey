@@ -18,7 +18,7 @@ namespace Adapters.SQL.Repositories
             return guest.Id;
         }
 
-        public async Task<Guest> Get(int id)
+        public async Task<Guest?> Get(int id)
         {
             return await _context.Guests.FirstOrDefaultAsync(g => g.Id == id);
         }

@@ -1,5 +1,5 @@
 ﻿public class InvalidEmailException : Exception
 {
     public InvalidEmailException()
-        : base("Email inválido.") { }
+        : base("Email is invalid.") { }
 }

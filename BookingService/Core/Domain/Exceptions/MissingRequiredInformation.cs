@@ -3,6 +3,6 @@
     public class MissingRequiredInformation : Exception
     {
         public MissingRequiredInformation()
-            : base("Informações obrigatórias não preenchidas.") { }
+            : base("Required information not provided.") { }
     }
 }
