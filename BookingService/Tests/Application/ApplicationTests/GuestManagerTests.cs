@@ -11,6 +11,7 @@ namespace ApplicationTests
     public class Tests
     {
         GuestManager guestManager;
+
         [SetUp]
         public void Setup()
         {

@@ -13,5 +13,6 @@ namespace Application
         INVALID_PERSON_ID = 3,
         INVALID_EMAIL_ADDRESS = 4,
         MISSING_REQUIRED_INFORMATION = 5,
+        GUEST_NOT_FOUND = 6,
     }
 }

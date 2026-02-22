@@ -40,6 +40,7 @@ namespace Domain.Entities
             }
         }
 
+
         public async Task Save(IGuestRepository repository)
         {
             this.ValidateState();

@@ -42,5 +42,15 @@ namespace API.Controllers
                 _ => BadRequest(res)
             };
         }
+
+        [HttpGet]
+        public async Task<IActionResult> Get(int guestId)
+        {
+            var res = await _manager.GetGuest(guestId);
+
+            if (res.IsSuccess) return Created("", res.Data);
+
+            return BadRequest(res);
+        }
     }
 }

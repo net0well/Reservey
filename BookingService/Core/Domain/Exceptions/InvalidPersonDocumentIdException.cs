@@ -3,6 +3,6 @@
     public class InvalidPersonDocumentIdException : Exception
     {
         public InvalidPersonDocumentIdException()
-            : base("Documento de identificação inválido.") { }
+            : base("Document is invalid.") { }
     }
 }
